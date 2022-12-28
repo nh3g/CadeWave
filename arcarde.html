@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Arcade</title>
+        <link rel="stylesheet" type="text/css" href="./css/main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel='icon' href='./img/favicon.png' type='image/png' >
+        <link rel="icon" type="image/png" href="favicon.png"/>
+    </head>
+    <body class="bg">
+            <header class="menu">
+                <nav>
+                    <div class="logo">
+                        <img class="logoImage" src="./img/logo.png" style="margin-left: 150px; ">
+                        <p style="padding-left: 35px; font-family: Arial; line-height: 0.70em; text-shadow: 0px 0px 10px #b336f5; animation:animate 5s linear infinite; font-weight: bold;" id='userWallet' class='text-lg text-gray-600 my-2'></p>
+                    </div>
+                    <div class="link">
+                        <div class="linkWrapper">
+                            <a href="./index.html" >Home</a>
+                        </div>
+                        <div class="linkWrapper">
+                            <a href="./arcarde.html">Arcades</a>   
+                        </div>
+                        <div class="linkWrapper">
+                            <a href="./nfts.html" >NFTs</a>                   
+                        </div>
+                        <div class="linkWrapper">
+                            <a href="./index.html#services" >Tokenomics</a>
+                        </div>
+                        <div class="linkWrapper">
+                            <a href="./DEX.html" >DEX</a>
+                        </div>
+                        <div class="linkWrapper">
+                            <a href="#" ></a>
+                          <link class="wallet"
+                        </div>
+                        <div head>
+                            <title>Web3 Metamask Login</title>
+                            <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+                          </head>
+                          
+                          <body class="flex w-screen h-screen justify-center items-center">
+                            <div class="flex-col space-y-2 justify-center items-center">
+                              <button id='loginButton' onclick="" class="mx-auto rounded-md p-2 bg-purple-500 text-white">
+                                Login with MetaMask
+                              </button>
+                            </div>
+                          
+                            <script>
+                              window.userWalletAddress = null
+                              const loginButton = document.getElementById('loginButton')
+                              const userWallet = document.getElementById('userWallet')
+                          
+                              function toggleButton() {
+                                if (!window.ethereum) {
+                                  loginButton.innerText = 'MetaMask is not installed'
+                                  loginButton.classList.remove('bg-purple-500', 'text-white')
+                                  loginButton.classList.add('bg-gray-500', 'text-gray-100', 'cursor-not-allowed')
+                                  return false
+                                }
+                          
+                                loginButton.addEventListener('click', loginWithMetaMask)
+                              }
+                          
+                              async function loginWithMetaMask() {
+                                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                                  .catch((e) => {
+                                    console.error(e.message)
+                                    return
+                                  })
+                              await window.ethereum.request({
+                              method: 'wallet_switchEthereumChain',
+                              params: [{ chainId: '0x38' }], // chainId must be in hexadecimal numbers
+                                  })  
+
+                                if (!accounts) { return }
+                          
+                                window.userWalletAddress = accounts[0]  + ' | Score: 0'
+                                userWallet.innerText = window.userWalletAddress
+                                loginButton.innerText = 'Sign out of MetaMask'
+                          
+                                loginButton.removeEventListener('click', loginWithMetaMask)
+                                setTimeout(() => {
+                                  loginButton.addEventListener('click', signOutOfMetaMask)
+                                }, 200)
+                              }
+                          
+                              function signOutOfMetaMask() {
+                                window.userWalletAddress = null
+                                userWallet.innerText = ''
+                                loginButton.innerText = 'Sign in with MetaMask'
+                          
+                                loginButton.removeEventListener('click', signOutOfMetaMask)
+                                setTimeout(() => {
+                                  loginButton.addEventListener('click', loginWithMetaMask)
+                                }, 200)
+                              }
+                          
+                              window.addEventListener('DOMContentLoaded', () => {
+                                toggleButton()
+                              });
+                            </script>
+                          </body>
+
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        
+            <main class="games">
+
+                <div class="jog">
+                    <div class="cards">
+                       <div class="box1">
+                           <div class="content1">
+                               <h4>01</h4>
+                               <h6>Spance X vs CadeWave</h6>
+                               <p>Try out the demo of Unnamed's first arcade game. 
+                                   Climb the ranks by dodging and shooting your way through the Asteroid Armada.
+                               </p>
+                               <a href="http://unnamed-space.rf.gd/?i=1">PLAY</a>
+                           </div>
+                       </div>
+                    </div>
+                    <div class="cards">
+                       <div class="box1">
+                           <div class="content1">
+                               <h4>02</h4>
+                               <h6>ElonBird</h6>
+                               <p >
+                                   Try out the demo of ElonBird, a meme version of the classic flapbird game. Stay away from the candles and stay alive
+                                   as long as you can.
+                                   <br>
+                                   <br>
+                               </p>
+                               <a href="http://elon-bird-unnamed.rf.gd/?i=1">PLAY</a>
+                           </div>
+                       </div>
+                    </div>   
+                    <div class="cards">
+                       <div class="box1">
+                           <div class="content1">
+                               <h4>03</h4>
+                               <h6>Unnamed Man</h6>
+                               <p >
+                                   <br>
+                                   <br>
+                                   Comming Soon
+                                   <br>
+                                   <br>
+                                   <br>
+                               </p>
+                               <a href="#">COMING SOON</a>
+                           </div>
+                       </div>
+                    </div>      
+               </div>
+               
+            </main>
+            <footer>
+                <div class="footer-content">
+                    <h3>CadeWave</h3>
+                    <ul class="socials">
+                        <li><a href="https://twitter.com/TokenUnnamed"><i class="fa fa-twitter"></i></a></li>
+                        
+                        <li><a href="https://t.me/Unnamed_Token"><i class="fa fa-telegram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="footer-bottom">
+                    <p>copyright &copy;2021 Unnamed.</p>
+                </div>
+            </footer>
+    </body>
+</html>
